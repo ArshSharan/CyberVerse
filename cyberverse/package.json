@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.6",
+    "file-saver": "^2.0.5",
+    "lucide-react": "^0.510.0",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",

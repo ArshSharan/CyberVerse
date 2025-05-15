@@ -1,0 +1,41 @@
+.dialpad {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dial-button {
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  border: none;
+  background: #111;
+  color: #0ff;
+  box-shadow: 0 0 10px #0ff;
+  transition: 0.2s;
+}
+
+.dial-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #0ff;
+}
+
+.led-text {
+  font-family: 'Orbitron', monospace;
+  color: #0ff;
+  font-size: 1.5rem;
+  border: 2px solid #0ff;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #000;
+}
+
+.form-select.bg-dark:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 225, 0.25);
+  border-color: #00ffe1;
+  color: #00ffe1;
+}

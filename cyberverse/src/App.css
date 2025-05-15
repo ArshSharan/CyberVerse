@@ -11,3 +11,38 @@
   color: black !important;
   border-radius: 4px;
 }
+
+.text-info:hover {
+  color: #0ff;
+}
+
+.dialpad-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dialpad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  grid-gap: 15px;
+}
+
+.dial-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0ff;
+  background-color: #111;
+  box-shadow: 0 0 10px #0ff;
+  transition: transform 0.1s;
+}
+
+.dial-button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 0 15px #0ff;
+}

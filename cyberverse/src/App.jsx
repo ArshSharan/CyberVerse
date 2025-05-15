@@ -2,9 +2,10 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Base64Tool from './pages/Base64Tool';
 import Home from './pages/Home';
 import './App.css';
-import logo from './assets/icon.png'; // ✅ Your logo
+import logo from './assets/icon.png';
 import CaesarCracker from './pages/CaesarCracker';
 import CaesarEncoder from './pages/CaesarEncoder';
+import DTMFEncoder from './pages/DTMFEncoder';
 
 export default function App() {
   return (
@@ -35,8 +36,11 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/caesar" className="nav-link text-info">🕵️ Caesar Cracker</Link>
               </li>
-              <li className="ms-3 mb-2">
-                <Link to="/tools/caesar-encode" className="text-info text-decoration-none">🔐 Caesar Encoder</Link>
+              <li className="nav-item">
+                <Link to="/tools/caesar-encode" className="nav-link text-info">🔐 Caesar Encoder</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/tools/dtmf-encoder" className="nav-link text-info">📟 DTMF Encoder</Link>
               </li>
             </ul>
           </div>
@@ -47,6 +51,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/base64" element={<Base64Tool />} />
               <Route path="/tools/caesar-encode" element={<CaesarEncoder />} />
+              <Route path="/tools/dtmf-encoder" element={<DTMFEncoder />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
