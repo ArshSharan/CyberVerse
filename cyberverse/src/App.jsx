@@ -3,6 +3,7 @@ import Base64Tool from './pages/Base64Tool';
 import Home from './pages/Home';
 import './App.css';
 import logo from './assets/icon.png'; // ✅ Your logo
+import CaesarCracker from './pages/CaesarCracker';
 
 export default function App() {
   return (
@@ -30,7 +31,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/base64" className="nav-link text-info">🔐 Base64</Link>
               </li>
-              {/* Add more tools here */}
+              <li className="nav-item">
+                <Link to="/caesar" className="nav-link text-info">🕵️ Caesar Cracker</Link>
+              </li>
             </ul>
           </div>
 
@@ -42,6 +45,7 @@ export default function App() {
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
+              <Route path="/caesar" element={<CaesarCracker />} />
             </Routes>
           </div>
         </div>
