@@ -1,0 +1,31 @@
+body {
+  background-color: #0a0f0d;
+  font-family: 'JetBrains Mono', monospace;
+  color: #00ffe1;
+}
+
+textarea, input, button {
+  font-family: inherit;
+}
+
+textarea, input {
+  background-color: black;
+  color: #00ffe1;
+  border: 1px solid #00ffe1;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #00ffe1;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
