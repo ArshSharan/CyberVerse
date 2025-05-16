@@ -6,6 +6,7 @@ import logo from './assets/icon.png';
 import CaesarCracker from './pages/CaesarCracker';
 import CaesarEncoder from './pages/CaesarEncoder';
 import DTMFEncoder from './pages/DTMFEncoder';
+import DTMFDecoder from './pages/DTMFDecoder';
 
 export default function App() {
   return (
@@ -42,6 +43,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/tools/dtmf-encoder" className="nav-link text-info">📟 DTMF Encoder</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/tools/dtmf-decoder" className="nav-link text-info">📞 DTMF Decoder</Link>
+              </li>
             </ul>
           </div>
 
@@ -52,6 +56,7 @@ export default function App() {
               <Route path="/base64" element={<Base64Tool />} />
               <Route path="/tools/caesar-encode" element={<CaesarEncoder />} />
               <Route path="/tools/dtmf-encoder" element={<DTMFEncoder />} />
+              <Route path="/tools/dtmf-decoder" element={<DTMFDecoder />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
