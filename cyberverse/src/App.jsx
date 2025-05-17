@@ -7,7 +7,7 @@ import CaesarCracker from './pages/CaesarCracker';
 import CaesarEncoder from './pages/CaesarEncoder';
 import DTMFEncoder from './pages/DTMFEncoder';
 import DTMFDecoder from './pages/DTMFDecoder';
-
+import AudioSteganography from './pages/AudioSteganography';
 export default function App() {
   return (
     <div>
@@ -46,6 +46,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/tools/dtmf-decoder" className="nav-link text-info">📞 DTMF Decoder</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/tools/audio-steganography" className="nav-link text-info">🎙️ Audio Stegano</Link>
+              </li>
             </ul>
           </div>
 
@@ -57,6 +60,7 @@ export default function App() {
               <Route path="/tools/caesar-encode" element={<CaesarEncoder />} />
               <Route path="/tools/dtmf-encoder" element={<DTMFEncoder />} />
               <Route path="/tools/dtmf-decoder" element={<DTMFDecoder />} />
+              <Route path="/tools/audio-steganography" element={<AudioSteganography />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
