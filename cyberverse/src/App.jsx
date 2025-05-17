@@ -8,6 +8,7 @@ import CaesarEncoder from './pages/CaesarEncoder';
 import DTMFEncoder from './pages/DTMFEncoder';
 import DTMFDecoder from './pages/DTMFDecoder';
 import AudioSteganography from './pages/AudioSteganography';
+import SoundWaveAnalyzer from './pages/SoundWaveAnalyzer';
 export default function App() {
   return (
     <div>
@@ -49,6 +50,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/tools/audio-steganography" className="nav-link text-info">🎙️ Audio Stegano</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/tools/sound-wave-analyzer" className="nav-link text-info">🎤 Sound Wave Analyzer</Link>
+              </li>
             </ul>
           </div>
 
@@ -61,6 +65,7 @@ export default function App() {
               <Route path="/tools/dtmf-encoder" element={<DTMFEncoder />} />
               <Route path="/tools/dtmf-decoder" element={<DTMFDecoder />} />
               <Route path="/tools/audio-steganography" element={<AudioSteganography />} />
+              <Route path="/tools/sound-wave-analyzer" element={<SoundWaveAnalyzer />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
