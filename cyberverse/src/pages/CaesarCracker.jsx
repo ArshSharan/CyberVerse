@@ -4,9 +4,9 @@ import { Button, Form, Card } from "react-bootstrap";
 export default function CaesarCracker() {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
-  const [copiedShift, setCopiedShift] = useState(null); // ✅ NEW
+  const [copiedShift, setCopiedShift] = useState(null);
   const commonWords = ["the", "and", "that", "have", "for", "not", "you", "with", "this", "but", "from", "they", "his", "her", "she", "will", "say", "can", "who", "get", "would", "make", "about", "flag", "ctf"];
-  const [bestGuess, setBestGuess] = useState(null); // ✅ store best result
+  const [bestGuess, setBestGuess] = useState(null);
 
 const crackCaesar = () => {
   const text = input.toUpperCase();
