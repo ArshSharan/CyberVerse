@@ -71,7 +71,7 @@ export default function CSRTool() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'csr.pem';
+    a.download = 'CertificateSign.csr';
     a.click();
     URL.revokeObjectURL(url);
   };
