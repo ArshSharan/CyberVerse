@@ -16,7 +16,7 @@
 - Easily extendable with new decoding methods and file type support
 
 ### User-Friendly Interface
-- Command-line and optional GUI support for ease of use
+- GUI support for ease of use
 
 ## Use Cases
 
