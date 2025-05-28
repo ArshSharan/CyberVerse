@@ -12,6 +12,7 @@ import SoundWaveAnalyzer from './pages/SoundWaveAnalyzer';
 import XOREncodeDecode from './pages/EXOREncodeDecode';
 import CSRTool from './pages/CSRTool';
 import RSATools from './pages/RSATools';
+import MetadataViewer from './pages/MetadataViewer';
 export default function App() {
   return (
     <div>
@@ -65,7 +66,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/tools/rsa-tool" className="nav-link text-info">🛅 RSA Tools</Link>
               </li>
-              
+              <li className="nav-item">
+                <Link to="/tools/metadata-viewer" className="nav-link text-info">🧬 Metadata Viewer</Link>
+              </li>
             </ul>
           </div>
 
@@ -82,6 +85,7 @@ export default function App() {
               <Route path="/tools/xor-tool" element={<XOREncodeDecode />} />
               <Route path="/tools/csr-tool" element={<CSRTool />} />
               <Route path="/tools/rsa-tool" element={<RSATools />} />
+              <Route path="/tools/metadata-viewer" element={<MetadataViewer />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
