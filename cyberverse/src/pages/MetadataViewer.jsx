@@ -3,7 +3,7 @@ import React from 'react';
 export default function MetadataInspector() {
   return (
     <div>
-      <h2 style={{ color: '#00ffe1', fontFamily: 'Orbitron' }}>🧠 Metadata Inspector</h2>
+      <h2 style={{ color: '#00ffe1', fontFamily: 'Orbitron' }}>📷 Metadata Inspector</h2>
       <p className="text-light">
         Upload an image or document to view its hidden metadata using ExifTool.
       </p>

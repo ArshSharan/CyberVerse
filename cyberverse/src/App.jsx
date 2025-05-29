@@ -67,7 +67,7 @@ export default function App() {
                 <Link to="/tools/rsa-tool" className="nav-link text-info">🛅 RSA Tools</Link>
               </li>
               <li className="nav-item">
-                <Link to="/tools/metadata-viewer" className="nav-link text-info">🧬 Metadata Viewer</Link>
+                <Link to="/tools/metadata-viewer" className="nav-link text-info">🔬 Metadata Viewer</Link>
               </li>
             </ul>
           </div>
