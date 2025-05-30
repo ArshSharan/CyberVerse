@@ -13,6 +13,8 @@ import XOREncodeDecode from './pages/EXOREncodeDecode';
 import CSRTool from './pages/CSRTool';
 import RSATools from './pages/RSATools';
 import MetadataViewer from './pages/MetadataViewer';
+import BaseEncoderDecoder from './pages/BaseEncoderDecoder';
+
 export default function App() {
   return (
     <div>
@@ -69,6 +71,9 @@ export default function App() {
               <li className="nav-item">
                 <Link to="/tools/metadata-viewer" className="nav-link text-info">🔬 Metadata Viewer</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/components/base-encoder-decoder" className="nav-link text-info">⚙️ Base Encoder Tool</Link>
+              </li>
             </ul>
           </div>
 
@@ -86,6 +91,7 @@ export default function App() {
               <Route path="/tools/csr-tool" element={<CSRTool />} />
               <Route path="/tools/rsa-tool" element={<RSATools />} />
               <Route path="/tools/metadata-viewer" element={<MetadataViewer />} />
+              <Route path="/components/base-encoder-decoder" element={<BaseEncoderDecoder />} />
               {/* Future pages */}
               <Route path="/tools" element={<div>All Tools Page Coming Soon</div>} />
               <Route path="/learning" element={<div>Learning Page Coming Soon</div>} />
