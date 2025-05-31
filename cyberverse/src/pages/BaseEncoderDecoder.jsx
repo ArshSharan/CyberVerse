@@ -22,7 +22,7 @@ export default function BaseEncoderDecoder() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
-      setOutput('⚠️ Invalid input for selected base/operation.');
+      setOutput('Invalid input for selected base/operation.');
     }
   };
 
