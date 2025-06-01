@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { Buffer } from 'buffer';
+import base32js from 'base32.js';
+import baseX from 'base-x';
+
+// Base85 alphabet (Ascii85/Z85 variant)
+const BASE85_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%&()*+-;<=>?@^_`{|}~";
+const base85 = baseX(BASE85_ALPHABET);
 
 export default function BaseEncoderDecoder() {
   const [input, setInput] = useState('');
@@ -11,18 +17,44 @@ export default function BaseEncoderDecoder() {
   const handleConvert = () => {
     try {
       let result = '';
-      const buffer = Buffer.from(input, mode === 'encode' ? 'utf8' : baseType);
-      if (mode === 'encode') {
-        result = buffer.toString(baseType);
-      } else {
-        result = buffer.toString('utf8');
+      if (baseType === 'base64') {
+        if (mode === 'encode') {
+          result = Buffer.from(input, 'utf8').toString('base64');
+        } else {
+          result = Buffer.from(input, 'base64').toString('utf8');
+        }
+      } else if (baseType === 'base16') {
+        if (mode === 'encode') {
+          result = Buffer.from(input, 'utf8').toString('hex');
+        } else {
+          result = Buffer.from(input, 'hex').toString('utf8');
+        }
+      } else if (baseType === 'base32') {
+        if (mode === 'encode') {
+          // base32.js expects a Uint8Array
+          const encoder = new base32js.Encoder();
+          result = encoder.write(Buffer.from(input, 'utf8')).finalize();
+        } else {
+          const decoder = new base32js.Decoder();
+          // base32.js returns a Uint8Array
+          const decoded = decoder.write(input).finalize();
+          result = Buffer.from(decoded).toString('utf8');
+        }
+      } else if (baseType === 'base85') {
+        if (mode === 'encode') {
+          // base-x expects a Buffer or Uint8Array
+          result = base85.encode(Buffer.from(input, 'utf8'));
+        } else {
+          const decoded = base85.decode(input);
+          result = Buffer.from(decoded).toString('utf8');
+        }
       }
       setOutput(result);
       navigator.clipboard.writeText(result);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
-      setOutput('Invalid input for selected base/operation.');
+      setOutput('⚠️ Invalid input for selected base/operation.');
     }
   };
 
