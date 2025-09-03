@@ -1,21 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+}
+
 .navbar {
-  background-color: #0a0f0d !important;
+  background: rgba(10, 15, 13, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #00ffe1 !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .nav-link {
   font-family: 'JetBrains Mono', monospace;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 225, 0.2), transparent);
+  transition: left 0.3s ease;
+}
+
+.nav-link:hover::before {
+  left: 100%;
 }
 
 .nav-link:hover {
-  background-color: #00ffe1;
-  color: black !important;
-  border-radius: 4px;
+  background: rgba(0, 255, 225, 0.1);
+  color: #00ffe1 !important;
+  border-radius: 8px;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 225, 0.3);
 }
 
 .text-info:hover {
-  color: #0ff;
+  color: #00ffe1 !important;
+  text-shadow: 0 0 10px #00ffe1;
 }
 
+/* Sidebar improvements */
+.col-md-2 {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%) !important;
+  border-right: 2px solid rgba(0, 255, 225, 0.3) !important;
+  position: relative;
+}
+
+.col-md-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #00ffe1, transparent);
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Main content area */
+.col-md-10 {
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* Button improvements */
+.btn-outline-info {
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  background: transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 225, 0.2), transparent);
+  transition: left 0.4s ease;
+}
+
+.btn-outline-info:hover::before {
+  left: 100%;
+}
+
+.btn-outline-info:hover {
+  background: rgba(0, 255, 225, 0.1);
+  border-color: #00ffe1;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 255, 225, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ffe1, #0080ff);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0080ff, #00ffe1);
+}
+
+/* Existing DTMF styles with improvements */
 .dialpad-container {
   display: flex;
   justify-content: center;
@@ -32,17 +154,64 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: none;
+  border: 2px solid #00ffe1;
   font-size: 24px;
   font-weight: bold;
-  color: #0ff;
-  background-color: #111;
-  box-shadow: 0 0 10px #0ff;
-  transition: transform 0.1s;
+  color: #00ffe1;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 225, 0.3),
+    inset 0 0 10px rgba(0, 255, 225, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.dial-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 255, 225, 0.3) 0%, transparent 70%);
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.dial-button:hover::before {
+  width: 100%;
+  height: 100%;
 }
 
 .dial-button:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  box-shadow: 0 0 15px #0ff;
+  transform: scale(1.1);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 225, 0.6),
+    inset 0 0 15px rgba(0, 255, 225, 0.2);
+  background: rgba(0, 255, 225, 0.1);
+}
+
+.dial-button:active {
+  transform: scale(0.95);
+}
+
+/* Loading animation for future use */
+@keyframes cyber-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 225, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 225, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 225, 0);
+  }
+}
+
+.cyber-pulse {
+  animation: cyber-pulse 2s infinite;
 }
