@@ -1,6 +1,6 @@
 # Cyberverse
 
-**Cyberverse** is a comprehensive, one-stop cybersecurity toolkit designed to serve security professionals, researchers, and enthusiasts. The platform integrates multiple steganographic utilities capable of decoding and analyzing various data formats such as audio, text, and image files. Whether for penetration testing, digital forensics, or educational purposes, Cyberverse streamlines the process of information hiding and extraction.
+**Cyberverse** is a comprehensive, one-stop cybersecurity toolkit for security professionals, researchers, and enthusiasts. The platform integrates multiple steganographic utilities capable of decoding and analyzing various data formats such as audio, text, and image files. Whether for penetration testing, digital forensics, or educational purposes, Cyberverse streamlines the process of information hiding and extraction.
 
 ## Features
 
