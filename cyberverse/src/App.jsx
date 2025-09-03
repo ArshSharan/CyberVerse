@@ -101,7 +101,7 @@ export default function App() {
                 { path: '/tools/csr-tool', icon: '🖋️', name: 'CSR Tool' },
                 { path: '/tools/rsa-tool', icon: '�', name: 'RSA Tools' },
                 { path: '/tools/metadata-viewer', icon: '🔬', name: 'Metadata Viewer' },
-                { path: '/components/base-encoder-decoder', icon: '⚙️', name: 'Base Encoder Tool' }
+                { path: '/components/base-encoder-decoder', icon: '⚙️', name: 'Base Encoder' }
               ].map((tool, index) => (
                 <motion.li 
                   key={index}

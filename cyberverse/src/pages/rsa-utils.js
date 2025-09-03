@@ -37,6 +37,28 @@ export async function encryptWithPublicKey(pemKey, message) {
   return btoa(String.fromCharCode(...new Uint8Array(encrypted)));
 }
 
+export async function decryptWithPrivateKey(pemKey, encryptedMessage) {
+  try {
+    const binaryDer = convertPemToBinary(pemKey);
+    const privateKey = await window.crypto.subtle.importKey(
+      "pkcs8",
+      binaryDer,
+      {
+        name: "RSA-OAEP",
+        hash: "SHA-256"
+      },
+      false,
+      ["decrypt"]
+    );
+
+    const encryptedBuffer = Uint8Array.from(atob(encryptedMessage), c => c.charCodeAt(0));
+    const decrypted = await window.crypto.subtle.decrypt({ name: "RSA-OAEP" }, privateKey, encryptedBuffer);
+    return new TextDecoder().decode(decrypted);
+  } catch (error) {
+    throw new Error(`Decryption failed: ${error.message}`);
+  }
+}
+
 function convertToPEM(buffer, label) {
   const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
   const lines = base64.match(/.{1,64}/g).join("\n");
