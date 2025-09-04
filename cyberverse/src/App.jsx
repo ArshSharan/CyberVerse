@@ -4,7 +4,7 @@ import Base64Tool from './pages/Base64Tool';
 import Home from './pages/Home';
 import Tools from './pages/Tools';
 import './App.css';
-import logo from './assets/icon.png';
+import logo from './assets/Icon.png';
 import CaesarCracker from './pages/CaesarCracker';
 import CaesarEncoder from './pages/CaesarEncoder';
 import DTMFEncoder from './pages/DTMFEncoder';
