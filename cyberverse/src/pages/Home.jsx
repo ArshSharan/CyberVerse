@@ -1,554 +1,660 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import ShinyText from '../components/ShinyText';
+import '../components/ShinyText.css';
+import { 
+  FaLock, 
+  FaCode, 
+  FaArrowRight,
+  FaCubes,
+  FaUserShield,
+  FaPlay
+} from "react-icons/fa";
+import { 
+  HiOutlineSparkles
+} from "react-icons/hi";
+import { 
+  RiFileSearchLine 
+} from "react-icons/ri";
 
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
-    window.addEventListener('mousemove', updateMousePosition);
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
       clearInterval(timer);
     };
   }, []);
 
-  const features = [
+  const tools = [
     {
-      title: "Advanced Cryptography",
-      description: "State-of-the-art encryption and decryption tools",
-      icon: "�️"
+      name: "RSA Toolkit",
+      category: "Cryptography",
+      description: "Generate keys, encrypt/decrypt with industry-standard RSA",
+      icon: <FaLock size={20} />,
+      color: "#00ffe1",
+      path: "/tools"
     },
     {
-      title: "Steganography Suite",
-      description: "Hide and extract data from various media formats",
-      icon: "🔍"
+      name: "Audio Steganography",
+      category: "Steganography", 
+      description: "Hide secret messages in audio files",
+      icon: <HiOutlineSparkles size={20} />,
+      color: "#ff6b6b",
+      path: "/tools"
     },
     {
-      title: "Digital Forensics",
-      description: "Analyze and extract metadata from files",
-      icon: "�️"
+      name: "DTMF Decoder",
+      category: "Signal Processing",
+      description: "Analyze dual-tone multi-frequency signals",
+      icon: <FaPlay size={20} />,
+      color: "#4ecdc4",
+      path: "/tools"
+    },
+    {
+      name: "Caesar Cipher",
+      category: "Classical Crypto",
+      description: "Break and create classical substitution ciphers",
+      icon: <FaCode size={20} />,
+      color: "#45b7d1",
+      path: "/tools"
+    },
+    {
+      name: "Metadata Viewer",
+      category: "Forensics",
+      description: "Extract hidden information from files",
+      icon: <RiFileSearchLine size={20} />,
+      color: "#96ceb4",
+      path: "/tools"
+    },
+    {
+      name: "Base64 Toolkit",
+      category: "Encoding",
+      description: "Encode and decode Base64 data streams",
+      icon: <FaCubes size={20} />,
+      color: "#feca57",
+      path: "/tools"
     }
   ];
 
   const stats = [
-    { label: "Security Tools", value: "12+", icon: "⚙️" },
-    { label: "Encryption Methods", value: "25+", icon: "🔐" },
-    { label: "File Formats", value: "50+", icon: "📁" },
-    { label: "Active Users", value: "1K+", icon: "👥" }
+    { label: "Security Tools", value: "12+", icon: <FaCubes size={20} /> },
+    { label: "Encryption Methods", value: "25+", icon: <FaLock size={20} /> },
+    { label: "File Formats", value: "50+", icon: <FaCode size={20} /> },
+    { label: "Active Users", value: "1K+", icon: <FaUserShield size={20} /> }
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
-  const floatVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
 
   return (
     <div className="home-container">
-      {/* Animated background grid */}
-      <div className="cyber-grid">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="grid-line"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: [0, 0.3, 0],
-              scaleY: [0, 1, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: i * 0.2
-            }}
-            style={{
-              left: `${(i * 5)}%`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Mouse follower effect */}
-      <motion.div
-        className="mouse-follower"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20
-        }}
-        transition={{ type: "spring", damping: 30, stiffness: 200 }}
-      />
-
-      {/* Hero Section */}
-      <motion.div 
-        className="hero-section"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
+      {/* Hero Section - Full viewport */}
+      <motion.section 
+        className="hero-viewport"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
       >
-        <motion.div className="hero-content" variants={itemVariants}>
+        <div className="hero-content">
+          {/* Time and system status */}
           <motion.div 
-            className="time-display"
-            variants={itemVariants}
+            className="system-status"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <span className="cyber-time">
+            <div className="status-indicator">
+              <div className="status-dot"></div>
+              <span>SYSTEM ONLINE</span>
+            </div>
+            <div className="cyber-time">
               {currentTime.toLocaleTimeString('en-US', { 
                 hour12: false,
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
               })}
-            </span>
+            </div>
           </motion.div>
 
-          <motion.h1 
-            className="cyber-title"
-            variants={itemVariants}
+          {/* Main title with dramatic effect */}
+          <motion.div
+            className="title-section"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
           >
-            <span className="title-icon">🌌</span>
-            <span className="cyber-glow-text">CyberVerse</span>
-          </motion.h1>
-          
+            <motion.h1 
+              className="main-title"
+              animate={{
+                textShadow: [
+                  "0 0 30px rgba(0, 255, 225, 0.5)",
+                  "0 0 50px rgba(0, 255, 225, 0.8)",
+                  "0 0 30px rgba(0, 255, 225, 0.5)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <ShinyText variant="hero-variant" speed="medium">
+                CYBER<span className="title-accent">VERSE</span>
+              </ShinyText>
+            </motion.h1>
+            
+            <motion.div
+              className="title-underline"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 1.5, duration: 1 }}
+            />
+          </motion.div>
+
+          {/* Subtitle */}
           <motion.p 
-            className="cyber-subtitle"
-            variants={itemVariants}
+            className="hero-subtitle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
           >
-            Advanced Cybersecurity Arsenal for Digital Warriors
+            <ShinyText variant="subtle-variant" speed="slow">
+              Elite cybersecurity arsenal for digital warfare specialists
+            </ShinyText>
           </motion.p>
 
+          {/* CTA with advanced styling */}
           <motion.div
-            className="pulse-line"
-            animate={{
-              scaleX: [0, 1, 0],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            variants={itemVariants}
-          />
-
-          <motion.div className="cta-section" variants={itemVariants}>
-            <Link to="/tools" className="cta-button primary">
-              <span>🚀 Launch Tools</span>
-            </Link>
-            <Link to="/learning" className="cta-button secondary">
-              <span>📚 Learn More</span>
+            className="hero-cta"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
+          >
+            <Link to="/tools" className="primary-cta">
+              <span className="cta-text">
+                <ShinyText variant="accent-variant" speed="fast">
+                  LAUNCH ARSENAL
+                </ShinyText>
+              </span>
+              <div className="cta-arrow">
+                <FaArrowRight />
+              </div>
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Features Section */}
-        <motion.div className="features-section" variants={containerVariants}>
-          <motion.h2 className="section-title" variants={itemVariants}>
-            Core Capabilities
+        {/* Scroll indicator */}
+        <motion.div
+          className="scroll-indicator"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="scroll-line"></div>
+          <span>EXPLORE TOOLS</span>
+        </motion.div>
+      </motion.section>
+
+      {/* Tools showcase */}
+      <motion.section 
+        className="tools-showcase"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="showcase-header">
+          <motion.h2 
+            className="showcase-title"
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <ShinyText variant="hero-variant" speed="medium">
+              ARSENAL OVERVIEW
+            </ShinyText>
           </motion.h2>
-          
-          <div className="features-grid">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="feature-card"
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -5,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <motion.div 
-                  className="feature-icon"
-                  variants={floatVariants}
-                  initial="initial"
-                  animate="animate"
-                  style={{ animationDelay: `${index * 0.5}s` }}
-                >
-                  {feature.icon}
-                </motion.div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-                <div className="feature-glow" />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <motion.div 
+            className="showcase-subtitle"
+            initial={{ x: 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Advanced tools for digital reconnaissance and defense
+          </motion.div>
+        </div>
 
-        {/* Stats Section */}
-        <motion.div className="stats-section" variants={containerVariants}>
-          <div className="stats-grid">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="stat-card"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="stat-icon">{stat.icon}</div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </motion.div>
+        <div className="tools-grid">
+          {tools.map((tool, index) => (
+            <motion.div
+              key={index}
+              className="tool-card"
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ 
+                y: -8,
+                transition: { duration: 0.2 }
+              }}
+              viewport={{ once: true }}
+            >
+              <div className="tool-header">
+                <div className="tool-icon" style={{ color: tool.color }}>
+                  {tool.icon}
+                </div>
+                <div className="tool-category">{tool.category}</div>
+              </div>
+              <h3 className="tool-name">{tool.name}</h3>
+              <p className="tool-description">{tool.description}</p>
+              <div className="tool-status">
+                <div className="status-badge">OPERATIONAL</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Stats section */}
+      <motion.section 
+        className="stats-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="stats-container">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="stat-item"
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="stat-icon">{stat.icon}</div>
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
 
       <style jsx>{`
         .home-container {
           min-height: 100vh;
           background: 
-            radial-gradient(circle at 20% 50%, rgba(0, 255, 225, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.03) 0%, transparent 50%),
-            linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            radial-gradient(ellipse at top, rgba(0, 255, 225, 0.03) 0%, transparent 70%),
+            radial-gradient(ellipse at bottom, rgba(0, 128, 255, 0.03) 0%, transparent 70%),
+            #0a0a0a;
           position: relative;
-          overflow: hidden;
-          padding: 4rem 2rem;
+          overflow-x: hidden;
         }
 
-        .cyber-grid {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .grid-line {
-          position: absolute;
-          width: 1px;
-          height: 100%;
-          background: linear-gradient(180deg, transparent, #00ffe130, transparent);
-          transform-origin: top;
-        }
-
-        .mouse-follower {
-          position: fixed;
-          width: 40px;
-          height: 40px;
-          background: radial-gradient(circle, rgba(0, 255, 225, 0.15) 0%, transparent 70%);
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 2;
-          filter: blur(10px);
-        }
-
-        .hero-section {
+        /* HERO SECTION */
+        .hero-viewport {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           position: relative;
-          z-index: 3;
-          max-width: 1200px;
-          margin: 0 auto;
+          z-index: 10;
+        }
+
+        .hero-content {
           text-align: center;
+          max-width: 1000px;
+          padding: 0 2rem;
         }
 
-        .time-display {
-          margin-bottom: 2rem;
+        .system-status {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 3rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.9rem;
+          color: #00ffe1;
+        }
+
+        .status-indicator {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .status-dot {
+          width: 8px;
+          height: 8px;
+          background: #00ffe1;
+          border-radius: 50%;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(1.2); }
         }
 
         .cyber-time {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 1.2rem;
-          color: #00ffe1;
+          font-weight: 600;
+          letter-spacing: 0.1em;
           background: rgba(0, 255, 225, 0.1);
           padding: 0.5rem 1rem;
-          border-radius: 50px;
-          border: 1px solid rgba(0, 255, 225, 0.3);
-          text-shadow: 0 0 10px #00ffe1;
-          letter-spacing: 2px;
+          border-radius: 6px;
+          border: 1px solid rgba(0, 255, 225, 0.2);
         }
 
-        .cyber-title {
-          font-family: 'Orbitron', monospace;
-          font-size: clamp(3rem, 7vw, 5rem);
+        .title-section {
+          margin-bottom: 2rem;
+        }
+
+        .main-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: clamp(4rem, 10vw, 8rem);
           font-weight: 900;
-          margin-bottom: 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-        }
-
-        .title-icon {
-          font-size: 0.8em;
-          animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-
-        .cyber-glow-text {
-          background: linear-gradient(45deg, #00ffe1, #0080ff, #00ffe1);
-          background-size: 200% 200%;
-          animation: gradient-shift 3s ease infinite;
+          letter-spacing: -0.05em;
+          line-height: 0.9;
+          margin: 0;
+          background: linear-gradient(135deg, #ffffff 0%, #00ffe1 50%, #0080ff 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          color: #00ffe1;
-          text-shadow: 0 0 30px rgba(0, 255, 225, 0.5);
           position: relative;
         }
 
-        .cyber-glow-text::after {
-          content: 'CyberVerse';
-          position: absolute;
-          top: 0;
-          left: 0;
+        .title-accent {
+          display: block;
           color: #00ffe1;
-          z-index: -1;
-          filter: blur(20px);
+          text-shadow: 0 0 50px rgba(0, 255, 225, 0.5);
         }
 
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        .cyber-subtitle {
-          font-family: 'JetBrains Mono', monospace;
-          font-size: clamp(1rem, 2.5vw, 1.4rem);
-          color: #a0a0a0;
-          margin-bottom: 3rem;
-          letter-spacing: 1px;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .pulse-line {
-          width: 300px;
-          height: 2px;
+        .title-underline {
+          height: 4px;
           background: linear-gradient(90deg, transparent, #00ffe1, transparent);
-          margin: 0 auto 3rem;
+          margin: 1rem auto;
+          max-width: 300px;
+          border-radius: 2px;
         }
 
-        .cta-section {
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-bottom: 6rem;
-          flex-wrap: wrap;
-        }
-
-        .cta-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 1rem 2rem;
-          border-radius: 50px;
-          text-decoration: none;
-          font-family: 'JetBrains Mono', monospace;
-          font-weight: 500;
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cta-button.primary {
-          background: linear-gradient(45deg, #00ffe1, #0080ff);
-          color: #000;
-          box-shadow: 0 10px 30px rgba(0, 255, 225, 0.3);
-        }
-
-        .cta-button.secondary {
-          background: rgba(0, 255, 225, 0.1);
-          color: #00ffe1;
-          border: 2px solid rgba(0, 255, 225, 0.3);
-        }
-
-        .cta-button:hover {
-          transform: translateY(-3px);
-          scale: 1.05;
-        }
-
-        .cta-button.primary:hover {
-          box-shadow: 0 15px 40px rgba(0, 255, 225, 0.5);
-          color: #000;
-        }
-
-        .cta-button.secondary:hover {
-          background: rgba(0, 255, 225, 0.2);
-          border-color: #00ffe1;
-          color: #00ffe1;
-        }
-
-        .features-section {
-          margin-bottom: 6rem;
-        }
-
-        .section-title {
-          font-family: 'Orbitron', monospace;
-          font-size: clamp(1.8rem, 4vw, 2.5rem);
-          color: #ffffff;
+        .hero-subtitle {
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.8);
           margin-bottom: 3rem;
-          text-align: center;
+          line-height: 1.6;
+          letter-spacing: 0.025em;
         }
 
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
+        .hero-cta {
           margin-bottom: 4rem;
         }
 
-        .feature-card {
-          background: rgba(255, 255, 255, 0.02);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(0, 255, 225, 0.1);
-          border-radius: 20px;
-          padding: 2.5rem;
-          text-align: center;
+        .primary-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1.2rem 3rem;
+          background: linear-gradient(135deg, #00ffe1 0%, #0080ff 100%);
+          color: #000;
+          text-decoration: none;
+          border-radius: 50px;
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          font-size: 1.1rem;
+          letter-spacing: 0.05em;
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
+          box-shadow: 0 20px 40px rgba(0, 255, 225, 0.3);
         }
 
-        .feature-card:hover {
+        .primary-cta:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 25px 50px rgba(0, 255, 225, 0.5);
+        }
+
+        .cta-text {
+          position: relative;
+          z-index: 2;
+        }
+
+        .cta-arrow {
+          transition: transform 0.3s ease;
+        }
+
+        .primary-cta:hover .cta-arrow {
+          transform: translateX(5px);
+        }
+
+        .scroll-indicator {
+          position: absolute;
+          bottom: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.6);
+          letter-spacing: 0.1em;
+        }
+
+        .scroll-line {
+          width: 1px;
+          height: 30px;
+          background: linear-gradient(180deg, #00ffe1, transparent);
+        }
+
+        /* TOOLS SHOWCASE */
+        .tools-showcase {
+          padding: 6rem 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 10;
+        }
+
+        .showcase-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: 4rem;
+          gap: 2rem;
+        }
+
+        .showcase-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-weight: 800;
+          color: #ffffff;
+          margin: 0;
+          letter-spacing: -0.025em;
+        }
+
+        .showcase-subtitle {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.7);
+          max-width: 400px;
+          line-height: 1.6;
+        }
+
+        .tools-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+        }
+
+        .tool-card {
+          background: rgba(255, 255, 255, 0.02);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 20px;
+          padding: 2rem;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .tool-card:hover {
           border-color: rgba(0, 255, 225, 0.3);
           background: rgba(255, 255, 255, 0.05);
         }
 
-        .feature-icon {
-          font-size: 3rem;
+        .tool-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           margin-bottom: 1.5rem;
-          display: block;
         }
 
-        .feature-card h3 {
-          font-family: 'Orbitron', monospace;
-          font-size: 1.3rem;
-          color: #ffffff;
-          margin-bottom: 1rem;
+        .tool-icon {
+          font-size: 1.5rem;
         }
 
-        .feature-card p {
+        .tool-category {
           font-family: 'JetBrains Mono', monospace;
-          color: #a0a0a0;
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+
+        .tool-name {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0 0 1rem 0;
+          letter-spacing: -0.025em;
+        }
+
+        .tool-description {
+          font-family: 'Inter', sans-serif;
+          color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
-          margin: 0;
+          margin: 0 0 2rem 0;
         }
 
-        .feature-glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(0, 255, 225, 0.05) 0%, transparent 70%);
-          opacity: 0;
-          transition: opacity 0.3s ease;
+        .tool-status {
+          display: flex;
+          justify-content: flex-end;
         }
 
-        .feature-card:hover .feature-glow {
-          opacity: 1;
-        }
-
-        .stats-section {
-          margin-top: 4rem;
-        }
-
-        .stats-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 2rem;
-        }
-
-        .stat-card {
-          text-align: center;
-          padding: 2rem;
-          background: rgba(0, 255, 225, 0.05);
-          border-radius: 15px;
-          border: 1px solid rgba(0, 255, 225, 0.1);
-          transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
+        .status-badge {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #00ffe1;
           background: rgba(0, 255, 225, 0.1);
-          border-color: rgba(0, 255, 225, 0.3);
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          border: 1px solid rgba(0, 255, 225, 0.2);
+          letter-spacing: 0.05em;
+        }
+
+        /* STATS SECTION */
+        .stats-section {
+          padding: 4rem 2rem;
+          background: rgba(0, 255, 225, 0.02);
+          border-top: 1px solid rgba(0, 255, 225, 0.1);
+          position: relative;
+          z-index: 10;
+        }
+
+        .stats-container {
+          display: flex;
+          justify-content: center;
+          gap: 4rem;
+          max-width: 800px;
+          margin: 0 auto;
+          flex-wrap: wrap;
+        }
+
+        .stat-item {
+          text-align: center;
+          min-width: 120px;
         }
 
         .stat-icon {
           font-size: 2rem;
+          color: #00ffe1;
           margin-bottom: 1rem;
         }
 
         .stat-value {
-          font-family: 'Orbitron', monospace;
+          font-family: 'Space Grotesk', sans-serif;
           font-size: 2.5rem;
-          font-weight: 900;
-          color: #00ffe1;
+          font-weight: 800;
+          color: #ffffff;
           margin-bottom: 0.5rem;
+          letter-spacing: -0.025em;
         }
 
         .stat-label {
-          font-family: 'JetBrains Mono', monospace;
-          color: #a0a0a0;
+          font-family: 'Inter', sans-serif;
           font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
+          letter-spacing: 0.025em;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+          .showcase-header {
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+          }
+          
+          .tools-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          }
+          
+          .stats-container {
+            gap: 2rem;
+          }
         }
 
         @media (max-width: 768px) {
-          .home-container {
+          .hero-viewport {
             padding: 2rem 1rem;
           }
           
-          .cta-section {
+          .system-status {
             flex-direction: column;
-            align-items: center;
             gap: 1rem;
           }
           
-          .features-grid {
+          .tools-showcase {
+            padding: 4rem 1rem;
+          }
+          
+          .tools-grid {
             grid-template-columns: 1fr;
           }
           
-          .stats-grid {
-            grid-template-columns: repeat(2, 1fr);
+          .stats-container {
+            flex-direction: column;
+            gap: 2rem;
           }
         }
 
         @media (max-width: 480px) {
-          .stats-grid {
-            grid-template-columns: 1fr;
+          .hero-content {
+            padding: 0 1rem;
+          }
+          
+          .primary-cta {
+            padding: 1rem 2rem;
+            font-size: 1rem;
           }
         }
       `}</style>

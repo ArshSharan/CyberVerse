@@ -1,4 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/* Global Typography System - Professional Cybersecurity Theme */
+:root {
+  /* Font Families */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+  
+  /* Font Sizes - Professional Scale */
+  --fs-xs: 0.75rem;    /* 12px */
+  --fs-sm: 0.875rem;   /* 14px */
+  --fs-base: 1rem;     /* 16px */
+  --fs-lg: 1.125rem;   /* 18px */
+  --fs-xl: 1.25rem;    /* 20px */
+  --fs-2xl: 1.5rem;    /* 24px */
+  --fs-3xl: 1.875rem;  /* 30px */
+  --fs-4xl: 2.25rem;   /* 36px */
+  --fs-5xl: 3rem;      /* 48px */
+  --fs-6xl: 3.75rem;   /* 60px */
+  
+  /* Line Heights */
+  --lh-tight: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+  
+  /* Letter Spacing */
+  --ls-tight: -0.025em;
+  --ls-normal: 0;
+  --ls-wide: 0.025em;
+  --ls-wider: 0.1em;
+}
 
 * {
   box-sizing: border-box;
@@ -7,8 +47,33 @@
 body {
   background: #0a0a0a;
   color: #ffffff;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-body);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-normal);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Classes */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-normal);
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
 }
 
 .navbar {
@@ -21,7 +86,10 @@ body {
 }
 
 .nav-link {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--ls-wide);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;

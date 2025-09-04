@@ -1,0 +1,79 @@
+.shiny-text {
+  display: inline-block;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    transparent 40%,
+    #fff 50%,
+    transparent 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #fff;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shiny-text.disabled {
+  animation: none;
+}
+
+/* Custom variations for different contexts */
+.shiny-text.hero-variant {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    transparent 40%,
+    #00ffe1 50%,
+    transparent 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #00ffe1;
+}
+
+.shiny-text.subtle-variant {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.shiny-text.accent-variant {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    transparent 40%,
+    #0080ff 50%,
+    transparent 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: #0080ff;
+}
