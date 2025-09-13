@@ -399,8 +399,8 @@ export default function Home() {
           align-items: center;
           gap: 1rem;
           padding: 1.2rem 3rem;
-          background: linear-gradient(135deg, #00ffe1 0%, #0080ff 100%);
-          color: #000;
+          background: linear-gradient(135deg, #111215 0%, #1a1a2e 100%);
+          color: #ffffff;
           text-decoration: none;
           border-radius: 50px;
           font-family: 'Space Grotesk', sans-serif;
@@ -410,12 +410,18 @@ export default function Home() {
           position: relative;
           overflow: hidden;
           transition: all 0.3s ease;
-          box-shadow: 0 20px 40px rgba(0, 255, 225, 0.3);
+          border: 2px solid rgba(0, 255, 225, 0.3);
+          box-shadow: 0 0 15px rgba(0, 255, 225, 0.15);
         }
 
         .primary-cta:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 25px 50px rgba(0, 255, 225, 0.5);
+          transform: translateY(-2px);
+          border-color: rgba(0, 255, 225, 0.6);
+          box-shadow: 
+            0 0 20px rgba(0, 255, 225, 0.3),
+            0 0 35px rgba(0, 255, 225, 0.15),
+            0 3px 15px rgba(0, 255, 225, 0.2);
+          background: linear-gradient(135deg, #1a1a2e 0%, #252545 100%);
         }
 
         .cta-text {
@@ -528,17 +534,19 @@ export default function Home() {
           letter-spacing: 0.1em;
         }
 
-        .tool-name {
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: #ffffff;
-          margin: 0 0 1rem 0;
-          letter-spacing: -0.025em;
+        .tool-card .tool-name,
+        .tool-card h3.tool-name {
+          font-family: 'Space Grotesk', sans-serif !important;
+          font-size: 1.8rem !important;
+          font-weight: 700 !important;
+          color: #ffffff !important;
+          margin: 0 0 1rem 0 !important;
+          letter-spacing: -0.025em !important;
         }
 
         .tool-description {
           font-family: 'Inter', sans-serif;
+          font-size: 1rem;
           color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
           margin: 0 0 2rem 0;

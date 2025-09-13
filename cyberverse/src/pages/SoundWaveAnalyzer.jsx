@@ -21,7 +21,7 @@ import {
 export default function SoundWaveAnalyzer() {
   const analysisFeatures = [
     {
-      icon: <RiWaveformLine size={24} />,
+      icon: <FaWaveSquare size={24} />,
       title: "Waveform Analysis",
       description: "Visualize audio signals in time domain with amplitude and frequency data",
       color: "#00ffe1"
@@ -33,7 +33,7 @@ export default function SoundWaveAnalyzer() {
       color: "#ff6b6b"
     },
     {
-      icon: <RiWaveformLine size={24} />,
+      icon: <RiSoundModuleLine size={24} />,
       title: "Live Spectrogram",
       description: "Real-time frequency analysis with time-frequency domain visualization",
       color: "#4ecdc4"
